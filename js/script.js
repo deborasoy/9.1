@@ -38,13 +38,31 @@ function showList(array) {
 
 document.addEventListener("DOMContentLoaded", (e) => {
   let arrayFiltrada = strangeArray.filter(element => typeof element === 'string')
-  let filtradaLower = [];
+  
+  //Otra forma con tosorted() o sort(), con una funcion como parametro
 
-  for (let index = 0; index < arrayFiltrada.length; index++) {
+  let showArr = arrayFiltrada.toSorted((a, b) => { 
+    return a.localeCompare(b) // metodo de string
+  });
+  showList(showArr);
+  /*puedo cambiar toSorted() por sort(), la diferencia esta en que toSorted no modifica el array original (arrayFiltrada) al hacer las siguientes pruebas lo comprobe: 
+  
+  console.log(arrayFiltrada)
+  console.log(showArr)
+  console.log(arrayFiltrada)*/
+
+//Primer forma de hacerlo: 
+  //let filtradaLower = [];
+
+  /*for (let index = 0; index < arrayFiltrada.length; index++) {
     let element = arrayFiltrada[index];
     element = element.toLowerCase()
-    filtradaLower.push(element)
-  }
+    
+    filtradaLower = [...filtradaLower, element]; // filtradaLower.push(element)
+    
+    
+  }*/
   
-  showList(filtradaLower.sort());
+  //showList(filtradaLower.sort());
 });
+  
